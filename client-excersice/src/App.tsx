@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import LoginButton from "./components/LoginButton";
-import LogoutButton from "./components/LogoutButton";
-import { useAuth0 } from "@auth0/auth0-react";
+// import LoginButton from "./components/LoginButton";
+// import LogoutButton from "./components/LogoutButton";
+// import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { IImage } from "./models/IImage";
 import { IImagePresentationWithSearchInfo } from "./models/IImagePresent";
@@ -11,7 +11,7 @@ import { SearchResult } from "./components/SearchResult";
 import { ISearchTime } from "./models/ISearchTime";
 import { ISpelling } from "./models/ISpelling";
 import { Loading } from "./components/Loading";
-import { LoginStart } from "./components/LoginStart";
+// import { LoginStart } from "./components/LoginStart";
 
 function App() {
   const [images, setImages] = useState<IImage[] | undefined>([]);
@@ -41,14 +41,14 @@ function App() {
     }
   };
 
-  const { isAuthenticated, isLoading } = useAuth0();
+  // const { isAuthenticated, isLoading } = useAuth0();
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
   return (
     <>
-      {isAuthenticated ? (
+      {/* {isAuthenticated ? ( */}
         <>
           <section>
             <h2>Image Search</h2>
@@ -56,14 +56,14 @@ function App() {
             {loading && <Loading />}
             <SearchResult images={images} searchTimer={searchTimer} spelling={spelling} />
           </section>
-          <LogoutButton />
+          {/* <LogoutButton /> */}
         </>
-      ) : (
-        <>
-          <LoginStart />
-          <LoginButton />
-        </>
-      )}
+      {/* // ) : (
+      //   <>
+      //     <LoginStart />
+      //     <LoginButton />
+      //   </>
+      // )} */}
     </>
   );
 }
