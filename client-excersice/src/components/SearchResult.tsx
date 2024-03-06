@@ -10,7 +10,11 @@ interface ISearchResultProps {
 
 export const SearchResult = ({ images, searchTimer, spelling }: ISearchResultProps) => {
   return (
-    <div>
+    <div> {spelling !== undefined && (
+        <div>
+          <p>Did you mean {spelling.correctedQuery}?</p>
+        </div>
+      )}
       {images?.map((image, index) => (
         <div key={index} className="width">
           <img src={image.link} alt={`Image ${index}`} />
@@ -21,11 +25,7 @@ export const SearchResult = ({ images, searchTimer, spelling }: ISearchResultPro
           <p>Search Time: {searchTimer.searchTime} seconds</p>
         </div>
       )}
-      {spelling !== undefined && (
-        <div>
-          <p>Suggested spelling: {spelling.correctedQuery}</p>
-        </div>
-      )}
+     
     </div>
   );
 };
