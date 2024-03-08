@@ -9,6 +9,11 @@ interface ISearchResultProps {
 }
 
 export const SearchResult = ({ images, searchTimer, spelling }: ISearchResultProps) => {
+  // const handleSave = () => {
+  //   console.log();
+    
+  // };
+
   return (
     <div> {spelling !== undefined && (
         <div>
@@ -18,6 +23,7 @@ export const SearchResult = ({ images, searchTimer, spelling }: ISearchResultPro
       {images?.map((image, index) => (
         <div key={index} className="width">
           <img src={image.link} alt={`Image ${index}`} />
+          <button onClick={() => {console.log(image.link)}}>Save</button>
         </div>
       ))}
       {searchTimer !== undefined && (
