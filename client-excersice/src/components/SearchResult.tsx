@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { IImage } from "../models/IImage";
 import { ISearchTime } from "../models/ISearchTime";
 import { ISpelling } from "../models/ISpelling";
@@ -8,6 +9,8 @@ interface ISearchResultProps {
   searchTimer: ISearchTime | undefined;
   spelling: ISpelling | undefined;
 }
+
+const { user } = useAuth0();
 
 export const SearchResult = ({ images, searchTimer, spelling }: ISearchResultProps) => {
   // const [savedImage, setSavedImage] = useState<string | null>(null);
@@ -54,16 +57,20 @@ const handleSave = async (image: IImage) => {
 
   // console.log("After update:", savedImage);
 
-
+const userEmail = user?.email;
 
   try {
     // Skicka bildens URL till servern för att spara den
-    const response = await fetch('http://localhost:3001/favorites', {
+    const response = await fetch('http://localhost:3002/favorites', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ imageUrl: image.link }),
+      body: JSON.stringify({
+        imageUrl: image.link,
+        title: image.title,
+        // userEmail: userEmail, // Add user email to the request body
+      }),
     });
 
     if (response.ok) {
@@ -77,13 +84,9 @@ const handleSave = async (image: IImage) => {
   }
 };
 
-// ...
-
 const handleSpelling = () => {
   
 }
-
-  
   return (
     <div>
       {" "}
