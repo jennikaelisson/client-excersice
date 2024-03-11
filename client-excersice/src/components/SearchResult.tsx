@@ -7,9 +7,12 @@ interface ISearchResultProps {
   images: IImage[] | undefined;
   searchTimer: ISearchTime | undefined;
   spelling: ISpelling | undefined;
+  onCorrectedQuery: (correctedQuery: string) => void;
 }
 
-export const SearchResult = ({ images, searchTimer, spelling }: ISearchResultProps) => {
+
+
+export const SearchResult = ({ images, searchTimer, spelling, onCorrectedQuery }: ISearchResultProps) => {
   // const [savedImage, setSavedImage] = useState<string | null>(null);
 
   // const handleSave = async (image: IImage) => {
@@ -80,8 +83,11 @@ const handleSave = async (image: IImage) => {
 // ...
 
 const handleSpelling = () => {
-  
-}
+  // Check if spelling is defined and send the corrected query
+  if (spelling?.correctedQuery) {
+    onCorrectedQuery(spelling.correctedQuery);
+  }
+};
 
   
   return (

@@ -20,6 +20,16 @@ function App() {
   );
   const [spelling, setSpelling] = useState<ISpelling | undefined>(undefined);
   const [loading, setLoading] = useState(false);
+  const [searchText, setSearchText] = useState<string>("");
+
+  const handleCorrectedQuery = async (correctedQuery: string) => {
+    // Set the corrected query in the state
+    setSearchText(correctedQuery);
+  
+    // Perform a new search with the corrected query
+    await searchImages(correctedQuery); // Use searchText instead of correctedQuery
+  };
+
 
   const searchImages = async (searchText: string) => {
     setLoading(true);
@@ -31,10 +41,13 @@ function App() {
           import.meta.env.VITE_GOOGLE_SEARCH_ENGINE_ID
         }&num=1&searchType=image&q=${searchText}`
       ); // ändra num till 10 innan inlämning
+      console.log(response);
+      
       console.log(response.data);
       setImages(response.data.items);
       setSearchTimer(response.data.searchInformation);
       setSpelling(response.data.spelling);
+      setSearchText('');
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -55,7 +68,7 @@ function App() {
             <h2>Image Search</h2>
             <SearchForm search={searchImages} />
             {loading && <Loading />}
-            <SearchResult images={images} searchTimer={searchTimer} spelling={spelling} />
+            <SearchResult images={images} searchTimer={searchTimer} spelling={spelling} onCorrectedQuery={handleCorrectedQuery} />
           </section>
           {/* <LogoutButton /> */}
         </>
