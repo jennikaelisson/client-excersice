@@ -29,8 +29,8 @@ function App() {
           import.meta.env.VITE_GOOGLE_API_KEY
         }&cx=${
           import.meta.env.VITE_GOOGLE_SEARCH_ENGINE_ID
-        }&num=10&searchType=image&q=${searchText}`
-      );
+        }&num=1&searchType=image&q=${searchText}`
+      ); // ändra num till 10 innan inlämning
       console.log(response.data);
       setImages(response.data.items);
       setSearchTimer(response.data.searchInformation);
