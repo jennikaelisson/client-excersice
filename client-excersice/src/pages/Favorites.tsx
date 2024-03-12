@@ -10,7 +10,7 @@ export const Favorites = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3001/favorites', {
+        const response = await fetch('http://localhost:3002/favorites', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export const Favorites = () => {
       } catch (error) {
         console.error('Error:', error);
       }
-    }; fetchData(); // Anropa den asynkrona funktionen direkt
+    }; fetchData(); 
 
 }, []);
 
@@ -43,6 +43,13 @@ export const Favorites = () => {
     </div>
   );
 };
+
+
+
+
+
+
+
 
 
 
