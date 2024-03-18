@@ -13,7 +13,7 @@ export const Favorites = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3002/favorites/${user?.email}`, {
+        const response = await fetch(`http://localhost:3002/favorites/${user?.sub}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

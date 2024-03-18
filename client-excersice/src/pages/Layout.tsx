@@ -10,7 +10,7 @@ import LogoutButton from "../components/LogoutButton";
 
 
 export const Layout = () => {
-    const { isAuthenticated, isLoading } = useAuth0();
+    const { user, isAuthenticated, isLoading } = useAuth0();
 
     if (isLoading) {
         return <Loading />;
@@ -19,7 +19,7 @@ export const Layout = () => {
     <>     {isAuthenticated ? (<>
       <Navigation />
       <header className="row">
-      headedr 
+      headedr <p>{user?.email}, {user?.sub}, {user?.email_verified}</p>
         </header>
       <main className="row">
         <Outlet />

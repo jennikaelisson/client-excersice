@@ -20,7 +20,7 @@ const { user } = useAuth0();
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userEmail: user?.email, imageUrl: image.link }),
+      body: JSON.stringify({ userEmail: user?.sub, imageUrl: image.link }),
     });
 
     if (response.ok) {
