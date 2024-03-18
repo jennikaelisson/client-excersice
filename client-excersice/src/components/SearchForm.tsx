@@ -5,7 +5,7 @@ import { ISpelling } from "../models/ISpelling";
 interface ISearchFormProps {
     search: (text: string) => void;
     searchTimer: ISearchTime | undefined;
-  spelling: ISpelling;
+  spelling: ISpelling | undefined;
 }
 
 export const SearchForm = ({search, searchTimer, spelling} : ISearchFormProps) => {
@@ -19,8 +19,8 @@ export const SearchForm = ({search, searchTimer, spelling} : ISearchFormProps) =
   };
 
   const handleSpelling = () => {
-    setSearchText(spelling?.correctedQuery);
-    search(spelling?.correctedQuery);
+    setSearchText(spelling?.correctedQuery || "");
+    search(spelling?.correctedQuery || "");
   }
 
   return <><form onSubmit={handleSubmit}>

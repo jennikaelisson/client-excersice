@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import { useState, useEffect } from 'react';
 
 interface ISavedImage {
@@ -5,12 +6,14 @@ interface ISavedImage {
 }
 
 export const Favorites = () => {
+  const { user } = useAuth0();
   const [savedImages, setSavedImages] = useState<ISavedImage[]>([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3002/favorites', {
+        const response = await fetch(`http://localhost:3002/favorites/${user?.email}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -21,7 +24,7 @@ export const Favorites = () => {
           console.log('Favorites gathered successfully');
           const data = await response.json();
           console.log(data);
-          setSavedImages(data);
+          setSavedImages(data.imageUrls || []);
         } else {
           console.error('Failed to gather favorites.');
         }
