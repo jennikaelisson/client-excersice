@@ -11,7 +11,6 @@ import { SearchResult } from "./components/SearchResult";
 import { ISearchTime } from "./models/ISearchTime";
 import { ISpelling } from "./models/ISpelling";
 import { Loading } from "./components/Loading";
-// import { LoginStart } from "./components/LoginStart";
 
 function App() {
   const [images, setImages] = useState<IImage[] | undefined>([]);
@@ -42,14 +41,7 @@ function App() {
     }
   };
 
-  // const { isAuthenticated, isLoading } = useAuth0();
-
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
   return (
-    <>
-      {/* {isAuthenticated ? ( */}
         <>
           <section>
             <h2>Image Search</h2>
@@ -57,15 +49,7 @@ function App() {
             {loading && <Loading />}
             <SearchResult images={images} />
           </section>
-          {/* <LogoutButton /> */}
-        </>
-      {/* // ) : (
-      //   <>
-      //     <LoginStart />
-      //     <LoginButton />
-      //   </>
-      // )} */}
-    </>
+                  </>
   );
 }
 
